@@ -4,6 +4,30 @@ set sessionoptions-=globals
 set sessionoptions-=localoptions
 set sessionoptions-=options
 
+" Create Json Config
+" Json Config setup for javascript project
+" Prefix s: to a function make it private to this plugin
+function! s:CreateJsonConfig()
+    " Check if the root has package.json file"
+    if filereadable('./package.json')
+        " Create jsconfig.json on root
+        if !(filereadable('./jsconfig.json'))
+            " commonJS module import for node and express
+            exe '!echo {"compilerOptions": {},"exclude": ["dist"]} > jsconfig.json'
+            echo 'Created jsconfig.json at root'
+        endif
+    endif
+
+    " Create jsconfig.json on frontend
+    if isdirectory('./frontend') && filereadable('./frontend/package.json')
+        if !(filereadable('./frontend/jsconfig.json'))
+            " es2015 module import for reactJS
+            exe '!echo {"compilerOptions": {},"exclude": ["dist"]} > ./frontend/jsconfig.json'
+            echo 'Created jsconfig.json at frontend'
+        endif
+    endif
+endfunction
+
 " NerdTree Custom Toggle for same NERDTree on every tab
 " Prefix s: to a function make it private to this plugin
 function! s:NerdTreeCopyToggle()
@@ -80,7 +104,7 @@ function! LoadSession()
 
     if argv(0)=='.'
         if argv(1)!='ns'
-            ":call CreateJsonConfig()
+            :call s:CreateJsonConfig()
             ":call InitFZFCache()
             echo "need to implement"
         endif
