@@ -1,5 +1,5 @@
 " SESSION CONFIG
-" Disable unnessasery data from session
+" Disable unnecessary data from session
 set sessionoptions-=globals
 set sessionoptions-=localoptions
 set sessionoptions-=options
@@ -97,10 +97,10 @@ function! LoadSession()
 
             echo "Session loaded"
         else
-            echo "No session loaded."
+            echo "No session loaded"
         endif
     else
-        echo "Session Error: Not running on project root dir"
+        echo "Session Disabled: Not running on project root directory"
         let g:sessiondir = ""
         let b:sessionfile = ""
     endif
@@ -108,4 +108,4 @@ endfunction
 
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call SaveSession()
-
+" SESSION CONFIG END
