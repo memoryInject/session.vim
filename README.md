@@ -40,3 +40,13 @@ If you pass 'ns' argument when opening nvim ( nvim . ns ) this will disable the 
 ```bash
 nvim . ns
 ```
+
+## Contributing
+
+Contributions are always welcome!  
+For major changes, please open an issue first to discuss what you would like to change.
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
